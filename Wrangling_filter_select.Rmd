@@ -77,7 +77,6 @@ movies %>%               # start with the full dataset, and then
 
 ```
 
-
 Often there are a lot of missing values, or `NA`s, in the budget variable. This is another characteristic of real data, and one that we often need to deal with. The function, `is.na()` is useful here. `is.na()` will identify all of the missing values and evaluates automatically as a TRUE/FALSE for each row, which eliminates the need to use any logical symbols.
 
 ```{r}
@@ -111,10 +110,11 @@ One more useful way to filter a character variable is to base it on part of the 
 
 ```{r}
 movies %>%
-  filter(str_detect(title, "Godzilla"))
+  filter(str_detect(title, "Batman"))
 
 # Which Batman movies are in the dataset?
 ```
+After running the data I found out that there is 8 Batman movies in the data.
 
 > A note of caution: This method does not account for misentries and bad data. A mispelled word could cause an observation to escape your filter. This is only scratching the surface of what we can do with strings in R, [here is a nice chapter to get more info on handling strings](https://r4ds.had.co.nz/strings.html)
 
@@ -164,7 +164,7 @@ movies %>%
   filter(year >= 2000) %>%
   drop_na(budget)
 ```
-
+i believe it is wrong because it is in the wrong order.
 
 ## Arrange
 
@@ -193,7 +193,11 @@ movies_2000 %>%
 # Using the original 'movies' data, what is the longest movie? What is the oldest movie?
 ```
 
-
+```{r}
+movies %>%
+  arrange(desc(length))
+```
+After running the codesi found out that the longest movie is the Cure for Insomnia (5220 minutes). While the oldest movie was the Blacksmith scene (1893). 
 
 ## Scavenger Hunt
 
@@ -202,9 +206,11 @@ See if you can answer these questions:
 1. How many movies were released in 1995?
 
 ```{r}
-
+movies_1995 <- movies %>%
+  filter(year == 1995)
 ```
 
+after using the code above i found out that there is 1248 movies made in 1995.
 2. Which Comedies with an MPAA rating, over 120 minutes have a rating above 8?
 
 ```{r}
